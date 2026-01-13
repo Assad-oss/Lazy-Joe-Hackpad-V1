@@ -45,7 +45,6 @@ class FeedbackScene:
 feedback = FeedbackScene()
 oled_ext.scenes = [feedback]
 
-# 5. Define Keymap with OLED triggers
 # KC.VOLU/VOLD = Volume, KC.BRID/BRIU = Brightness
 keyboard.keymap = [
     [
@@ -56,7 +55,7 @@ keyboard.keymap = [
     ]
 ]
 
-# This hidden function updates the OLED whenever a key is pressed
+# updates the oled whenever a key is pressed
 def after_matrix_scan(keyboard):
     if keyboard.matrix.update():
         if keyboard.matrix.event.pressed:
@@ -67,4 +66,5 @@ def after_matrix_scan(keyboard):
 keyboard.after_matrix_scan = after_matrix_scan
 
 if __name__ == '__main__':
+
     keyboard.go()
