@@ -16,3 +16,14 @@ After that, routing and rearrangement of components fortunately went smoothly.
 <img width="636" height="443" alt="image" src="https://github.com/user-attachments/assets/223e8825-69a1-4f47-a05b-d121b7821438" />
 
 The CAD model - certainly the hardest part of my design. I have never used 3d software (atleast not to this extent) before, so it was a very steep learning curve. But eventually through looking at tutorials (and ample help from the hackboard tutorial) - I was able to gain some digital literacy and learn enough features to make the case. I also used a 3d model of the pcb to use in the assembled step file.
+
+<img width="532" height="736" alt="image" src="https://github.com/user-attachments/assets/75e22d51-d48b-4fb9-a5d5-1c0fd1cc562c" />
+
+The 3D viewer tool in KiCad enables to see my PCB in a stimulated, 3D format. I saved this as a step file and imported it into the assembled hackpad.
+
+<img width="397" height="195" alt="image" src="https://github.com/user-attachments/assets/8a344bd4-3370-4aa2-adab-f993d98a47eb" />
+
+Finally, the BOM list. ALl of the components I will be using are going to be included in the free kit provided - so there is no extra cost or grant I require.However, I have still made a list for clarity.
+
+
+
