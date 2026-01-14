@@ -4,4 +4,5 @@ Since I had no (real) need for any macro actions, I just decided to keep my desi
 Features:
   4 buttons that turn volume up, volume down, brightness up, brightness down respectively (from 1-4)
   .0.91 inch OLED, SSD1306. Programmed with circuit python to display the switch number when a button is pressed.
-  
+  |
+  |__
