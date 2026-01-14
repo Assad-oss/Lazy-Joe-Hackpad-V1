@@ -11,3 +11,5 @@ Features:
 
   
 <img width="636" height="443" alt="image" src="https://github.com/user-attachments/assets/223e8825-69a1-4f47-a05b-d121b7821438" />
+
+The CAD model - certainly the hardest part of my design. I have never used 3d software (atleast not to this extent) before, so it was a very steep learning curve. But eventually through looking at tutorials (and ample help from the hackboard tutorial) - I was able to gain some digital literacy and learn enough features to make the case.
