@@ -8,8 +8,11 @@ Features:
     
     My finished schematic, next time I make a similiar design I plan to just use labels to connect components and their legs to a GPIO pin. basically what was done with the OLED but also applied to switches (and other arbitrary/miscallaneous components used).
 
+<img width="546" height="803" alt="image" src="https://github.com/user-attachments/assets/de4965e1-3f0f-4501-b733-3233c025a5bf" />
 
-  
+The PCB design I found fairly simplistic, since KiCad is already able to put components on a pcb format once you have assigned it a footprint in the schematic.
+After that, routing and rearrangement of components fortunately went smoothly.
+
 <img width="636" height="443" alt="image" src="https://github.com/user-attachments/assets/223e8825-69a1-4f47-a05b-d121b7821438" />
 
-The CAD model - certainly the hardest part of my design. I have never used 3d software (atleast not to this extent) before, so it was a very steep learning curve. But eventually through looking at tutorials (and ample help from the hackboard tutorial) - I was able to gain some digital literacy and learn enough features to make the case.
+The CAD model - certainly the hardest part of my design. I have never used 3d software (atleast not to this extent) before, so it was a very steep learning curve. But eventually through looking at tutorials (and ample help from the hackboard tutorial) - I was able to gain some digital literacy and learn enough features to make the case. I also used a 3d model of the pcb to use in the assembled step file.
