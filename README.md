@@ -15,7 +15,7 @@ Features:
 
 
 The PCB design I found fairly simplistic, since KiCad is already able to put components on a pcb format once you have assigned it a footprint in the schematic.
-After that, routing and rearrangement of components fortunately went smoothly. In hindsight, I probably should have made it slightly larger with a more unique layout (can be remedied if I every try the keyboard tutorial).
+After that, routing and rearrangement of components fortunately went smoothly. In hindsight, I probably should have made it slightly larger with a more unique layout (can be remedied if I ever try the keyboard tutorial).
 
 <img width="770" height="504" alt="image" src="https://github.com/user-attachments/assets/c7ec0319-f9ae-41e6-b372-84293de0cee5" />
 
