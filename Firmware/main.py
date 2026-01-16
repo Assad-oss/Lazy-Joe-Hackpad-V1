@@ -1,70 +1,49 @@
 import board
-import busio
 from kmk.kmk_keyboard import KMKKeyboard
-from kmk.scanners.keypad import KeysScanner
 from kmk.keys import KC
+from kmk.scanners import DiodeOrientation
 from kmk.extensions.media_keys import MediaKeys
-from kmk.extensions.peg_oled import PegOLED
+from kmk.modules.encoder import EncoderHandler
+from kmk.extensions.display import Display, TextEntry
 
 keyboard = KMKKeyboard()
 
-# 1. Add Extensions
+# 1. Setup Media Keys (Volume/Brightness)
 keyboard.extensions.append(MediaKeys())
 
-# 2. Setup OLED (GPIO7=SCL, GPIO6=SDA)
-i2c_bus = busio.I2C(board.GP7, board.GP6)
-oled_ext = PegOLED(i2c_device=i2c_bus, display_width=128, display_height=32)
-keyboard.extensions.append(oled_ext)
+# 2. Rotary Encoder Setup (Pins 1 & 2 from your schematic)
+# Clockwise = TAB, Counter-Clockwise = Shift+TAB
+encoder_handler = EncoderHandler()
+keyboard.modules.append(encoder_handler)
+encoder_handler.pins = ((board.GP26, board.GP27, None, False),)
+encoder_handler.map = (((KC.TAB, KC.LSFT(KC.TAB)),),)
 
-# 3. Define Pins (Matches your image_f325f5.png)
-# SW1=GP3, SW2=GP4, SW3=GP2, SW4=GP1
-PINS = [board.GP3, board.GP4, board.GP2, board.GP1]
+# 3. Pin Mapping for SW1-SW4
+# SW1=GP29, SW2=GP6, SW3=GP7, SW4=GP0
+keyboard.col_pins = (board.GP29, board.GP6, board.GP7, board.GP0)
+keyboard.row_pins = (board.GP28,) # Dummy row for simple push buttons
+keyboard.diode_orientation = DiodeOrientation.COL2ROW
 
-keyboard.matrix = KeysScanner(
-    pins=PINS,
-    value_when_pressed=False,
-)
-
-# 4. Custom OLED Scene for "3 Second" Rule
-class FeedbackScene:
-    def __init__(self):
-        self.name = "Feedback"
-        self.last_key = ""
-        self.timer = 0
-
-    def update(self, oled):
-        if self.timer > 0:
-            oled.fill(0)
-            oled.text(f"Switch: {self.last_key}", 20, 10, 1)
-            oled.show()
-            self.timer -= 1
-        else:
-            oled.fill(0) # Clear after 3 seconds
-            oled.show()
-
-feedback = FeedbackScene()
-oled_ext.scenes = [feedback]
-
-# KC.VOLU/VOLD = Volume, KC.BRID/BRIU = Brightness
+# 4. Keymap for the Switches
 keyboard.keymap = [
     [
-        KC.VOLU, # SW1
-        KC.VOLD, # SW2
-        KC.BRIU, # SW3
-        KC.BRID  # SW4
+        KC.VOLU, # SW1: Volume Up
+        KC.VOLD, # SW2: Volume Down
+        KC.BRID, # SW3: Brightness Up (Media Key)
+        KC.BRIU, # SW4: Brightness Down (Media Key)
     ]
 ]
 
-# updates the oled whenever a key is pressed
-def after_matrix_scan(keyboard):
-    if keyboard.matrix.update():
-        if keyboard.matrix.event.pressed:
-            # Show switch number (1-4)
-            feedback.last_key = str(keyboard.matrix.event.key_number + 1)
-            feedback.timer = 300 # Roughly 3 seconds depending on scan rate
-
-keyboard.after_matrix_scan = after_matrix_scan
+# 5. OLED Display Setup (128x32)
+# Connect OLED SDA to GP4 and SCL to GP5
+display = Display(
+    displayer=TextEntry,
+    width=128,
+    height=32,
+    i2c=board.I2C(),
+    device_address=0x3C,
+)
+keyboard.extensions.append(display)
 
 if __name__ == '__main__':
-
     keyboard.go()
